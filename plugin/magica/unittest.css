@@ -1,0 +1,266 @@
+/**
+ * t.hada 2017/03/04
+ *
+ * table grid plugin.
+ */
+.mgTestLuncher {
+	font-family: Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+
+	color: #ffffff;
+	background-color: #080816;
+	
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	width: calc(100% - 16px);
+	height: calc(100% - 16px);
+	
+	/*影を付ける*/
+	-moz-box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+	-o-box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+	-ms-box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+	box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+	/*角を丸める*/
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+.mgTestLuncher h1 {
+	margin: 16px;
+}
+
+.mgTestLuncher .mgStatus {
+	color: #080816;
+	background-color: #ffffff;
+	font-size: 90%;
+	margin: 0px 8px 0px 8px;
+	padding: 6px;
+}
+
+.mgTestLuncher .mgStatus .mgError {
+	color: #ff0000;
+}
+.mgTestLuncher .mgStatus .mgOK {
+	color: #0000ff;
+}
+
+.mgTestLuncher .mgStatus .mgPass {
+	color: #0000ff;
+}
+
+.mgTestLuncher .mgTestResult {
+	color: #080816;
+	background-color: #ffffff;
+	
+	position: absolute;
+	top: 124px;
+	left: 8px;
+	width: 294px;
+	height:calc(100% - 132px);
+
+	scroll: overflow;
+}
+
+.mgTestLuncher .mgTestResult h2 {
+	color: #ffffff;
+	background-color: #080816;
+	
+	margin: 4px;
+	padding: 4px;
+	font-size: 100%;
+}
+
+.mgTestLuncher .mgTestResult .mgResultItem {
+	font-size: 90%;
+	margin: 2px 8px 2px 8px;
+	padding: 2px 2px 2xp 2px;
+}
+
+.mgTestLuncher .mgTestResult .mgResultItem .mgError {
+	color: #ff0000;
+}
+
+.mgTestLuncher .mgTestResult .mgResultItem .mgOK {
+	color: #0000ff;
+}
+
+.mgTestLuncher .mgTestResult .mgResultItem a {
+	color: #080816;
+}
+
+.mgTestLuncher .mgTestCase {
+	position: absolute;
+	top: 124px;
+	left: 310px;
+	width: calc(100% - 322px);
+	height: calc(100% - 132px);
+
+	background-color: #ffffff;
+	opacity: 1.0;
+}
+
+.mgTestLuncher .mgResultDetail {
+	position: absolute;
+	top: 124px;
+	left: 248px;
+	width: calc(100% - 256px);
+	height: calc(100% - 132px);
+
+	background-color: #ffffff;
+}
+
+.mgTestRunner {
+	font-family: Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+	position: fixed;
+	left: 32px;
+	top: 32px;
+	right: 32px;
+	bottom: 32px;
+	color: #ffffff;
+	background-color: #080816;
+	opacity: 0.9;
+	/*影を付ける*/
+	-moz-box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+	-o-box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+	-ms-box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+	box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+	/*角を丸める*/
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+.mgTestRunner .mgTitle {
+	padding: 16px;
+	font-size: 200%;
+	font-weight: bold;
+}
+
+.mgTestRunner .mgStatusContext {
+	font-size: 90%;
+	color: #080816;
+	background-color: #ffffff;
+	margin: 8px 16px 8px 16px;
+	padding: 8px 8px 8px 8px;
+	font-style: italic;
+	white-space: nowrap;
+	overflow: none;
+}
+.mgTestRunner .mgStatusContext .mgError {
+	color: #ff0000;
+}
+.mgTestRunner .mgStatusContext .mgOK {
+	color: #0000ff;
+}
+
+.mgTestRunner .mgResultContext {
+	position: absolute;
+	top: 138px;
+	left: 16px;
+	right: 16px;
+	bottom: calc(20% + 4px);
+	overflow: scroll;
+
+	//margin: 8px 16px 8px 16px;
+	padding: 8px 8px 8px 8px;
+	color: #080816;
+	background-color: #ffffff;
+}
+
+.mgTestRunner .mgConsole {
+	position: absolute;
+	top: calc(80% + 4px);
+	left: 16px;
+	right: 16px;
+	bottom: 16px;
+	overflow: scroll;
+	
+	border: solid 1px #f0f0f0;
+	margin: 0px;
+	padding: 8px 8px 8px 8px;
+	
+	background-color: #080816;
+
+	color: #f0f0f0;
+	font-family: Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+}
+
+.mgTestRunner .mgResultContext .mgTestCaseContext {
+	margin: 0px 0px 8px 0px;
+	border-bottom: solid 1px #080816;
+}
+
+.mgTestRunner .mgResultContext .mgTestCaseContext .mgCaption {
+	font-weight: bold;
+	//font-style: italic;
+}
+
+.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock {
+	margin: 0px 0px 4px 24px;
+	font-size: 90%;
+}
+
+.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock .mgHead {
+	font-weight: bold;
+}
+
+.mgTestRunner .mgResultContext .mgTestCaseContext .mgError .mgHead .mgType {
+	color: #ff0000;
+	font-weight: bold;
+}
+
+.mgTestRunner .mgResultContext .mgTestCaseContext .mgOK .mgHead .mgType {
+	color: #0000ff;
+	font-weight: bold;
+}
+
+.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock .mgHead .mgMessage {
+}
+
+.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock .mgHead .mgMessage {
+}
+.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock .mgStack {
+	margin: 0px 0px 0px 24px;
+}
+
+.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock .mgStack pre {
+	margin: 0px;
+	padding: 0px;
+}
+
+.mgTestRunner .mgConsole .mgInfo {
+	color: #808080;
+}
+.mgTestRunner .mgConsole .mgWarn {
+	color: #ffff00;
+}
+
+.mgTestRunner .mgConsole .mgError {
+	color: #ff0000;
+}
+
+.mgTestRunnerShowButton {
+	position: fixed;
+	top: 8px;
+	right: 8px;
+	width: 48px;
+	height: 48px;
+	
+	opacity: 0.9;
+	
+	background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gDQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4Ij4NCgk8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIGZpbGw9IiMwODA4MTYiIHJ4PSI0IiByeT0iNCIvPg0KCTxyZWN0IHg9IjEyIiB5PSIxNiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmZmZmYiLz4NCgk8cG9seWdvbiBwb2ludHM9IjEyLDIyIDM2LDIyIDI0LDM0IiBmaWxsPSIjZmZmZmZmIi8+DQo8L3N2Zz4NCg==");
+}
+
+.mgTestRunnerShowButton:hover {
+	position: fixed;
+	top: 8px;
+	right: 8px;
+	width: 48px;
+	height: 48px;
+	
+	opacity: 0.9;
+	background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gDQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4Ij4NCgk8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIGZpbGw9IiM4MDgwODAiIHJ4PSI0IiByeT0iNCIvPg0KCTxyZWN0IHg9IjEyIiB5PSIxNiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmZmZmYiLz4NCgk8cG9seWdvbiBwb2ludHM9IjEyLDIyIDM2LDIyIDI0LDM0IiBmaWxsPSIjZmZmZmZmIi8+DQo8L3N2Zz4NCg==");
+}

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link type="text/css" href="../plugin/magica/unittest.css" rel="stylesheet"/>
+<script type="text/javascript" src="../plugin/magica/unittest.js"></script>
+<script type="text/javascript">
+var TestCase1 = {
+	name: "Test Utility Test Failure Sample",
+	testMessage: function() {
+		mg.out("Test Utility Test Failure Sampleはテストユーティリティのエラーになるパス");
+		mg.out("むしろエラーでなければダメ");
+		mg.out("");
+		mg.fail();
+	},
+	testAssertEquals1: function() {
+		mg.assertEquals(10, 11);
+	},
+	testAssertEquals2: function() {
+		mg.assertEquals("aaaaaa", "aaaaa");
+	},
+	testAssertNotEquals1: function() {
+		mg.assertNotEquals(10, 10);
+	},
+	testAssertNotEquals2: function() {
+		mg.assertNotEquals("aaaaa", "aaaaa");
+	},
+	testAssertNull1: function() {
+		mg.assertNull({});
+	},
+	testAssertNull2: function() {
+		mg.assertNull("");
+	},
+	testAssertNull3: function() {
+		mg.assertNull(100);
+	},
+	testAssertNotNull1: function() {
+		mg.assertNotNull(null);
+	},
+	testFail1: function() {
+		mg.fail();
+	},
+	testAssertSame1: function() {
+		mg.assertSame(new Object(), new Object());
+	},
+	testAssertSame2: function() {
+		mg.assertSame(new String("aaaa"), new String("aaaa"));
+	},
+	testAssertNotSame1: function() {
+		var obj = new Object();
+		mg.assertNotSame(obj, obj);
+	},
+	testAssertNotSame2: function() {
+		var obj = new String("aaaa");
+		mg.assertNotSame(obj, obj);
+	},
+	testAssertArrayEquals1: function() {
+		mg.assertArrayEquals([1], []);
+	},
+	testAssertArrayEquals2: function() {
+		mg.assertArrayEquals([1], [1, 2]);
+	},
+	testAssertArrayEquals3: function() {
+		mg.assertArrayEquals([1,2,3], [1, 2]);
+	},
+	testAssertArrayEquals4: function() {
+		mg.assertArrayEquals([1,2,3], [1,2,4]);
+	},
+	testAssertArrayEquals5: function() {
+		mg.assertArrayEquals([5,2,3], [1,2,4]);
+	},
+	testAssertArrayNotEquals1: function() {
+		mg.assertArrayNotEquals([], []);
+	},
+	testAssertArrayNotEquals2: function() {
+		mg.assertArrayNotEquals([1], [1]);
+	},
+	testAssertArrayNotEquals3: function() {
+		mg.assertArrayNotEquals([1,2,3], [1,2,3]);
+	},
+	testAssertTrue1: function() {
+		mg.assertTrue("abc" != "abc");
+	},
+	testAssertTrue2: function() {
+		mg.assertTrue(false);
+	},
+	testAssertFalse1: function() {
+		mg.assertFalse("abc" == "abc");
+	},
+	testAssertFalse2: function() {
+		mg.assertFalse(true);
+	},
+	
+};
+
+var TestCase2 = {
+	name: "Test Utility Test Suucess",
+	testAssertEquals: function() {
+		mg.assertEquals(10, 10);
+		mg.assertEquals("abc", "abc");
+		mg.assertEquals("aaaaaaa", 'aaaaaaa');
+	},	
+	testAssertNotEquals: function() {
+		mg.assertNotEquals(10, 11);
+		mg.assertNotEquals("abc", "ab");
+		mg.assertNotEquals("aaaaaaa", 'aaaaaaaa');
+		mg.assertNotEquals(new String("aaaa"), new String("aaaa"));
+	},	
+	testAssertNull: function() {
+		mg.assertNull(null);
+	},	
+	testAssertNotNull: function() {
+		mg.assertNotNull(10);
+		mg.assertNotNull("aaa");
+		mg.assertNotNull(undefined);
+		mg.assertNotNull({});
+		mg.assertNotNull([]);
+	},
+	testAssertTrue: function() {
+		mg.assertTrue(true);
+		mg.assertTrue("aaa" == "aaa");
+		mg.assertTrue(!false);
+		mg.assertTrue({}.length == {}.length);
+	},
+	testAssertFalse: function() {
+		mg.assertFalse(false);
+		mg.assertFalse("aaa" != "aaa");
+		mg.assertFalse(!true);
+		mg.assertFalse({}.length != {}.length);
+	},
+	testAssertSame: function() {
+		var obj = new Object();
+		mg.assertSame(obj, obj);
+		var obj = new String("aaaaaaa");
+		mg.assertSame(obj, obj);
+		var obj = new Number(1234);
+		mg.assertSame(obj, obj);
+	},
+	testAssertNotSame: function() {
+		var obj = new Object();
+		mg.assertNotSame(obj, new Object());
+		var obj = new String("aaaaaaa");
+		mg.assertNotSame(obj, new String("aaaaaaa"));
+		var obj = new Number(1234);
+		mg.assertNotSame(obj, new Number(1234));
+	},
+	testAssertArrayEquals: function() {
+		mg.assertArrayEquals([], []);
+		mg.assertArrayEquals([1], [1]);
+		mg.assertArrayEquals([1, "a"], [1, "a"]);
+		mg.assertArrayEquals([1, "a", "a"], [1, "a", "a"]);
+	},
+	testAssertArrayNotEquals: function() {
+		mg.assertArrayNotEquals([], [1]);
+		mg.assertArrayNotEquals([1], [2]);
+		mg.assertArrayNotEquals([1, "a"], [1, "b"]);
+		mg.assertArrayNotEquals([1, "a", "b"], [1, "a", "a"]);
+	},
+	testFailSuccess: function() {
+		try {
+			mg.assertFail();
+		} catch(ex) {
+			return;
+		}
+		throw new Error("error");
+	},
+	testOut: function() {
+		mg.out("目視確認用メッセージ等を出力");
+		mg.out("あああああああああああああああああああああああああああああ");
+		mg.info("あああああああああああああああああああああああああああああ");
+		mg.warn("あああああああああああああああああああああああああああああ");
+		mg.error("あああああああああああああああああああああああああああああ");
+	},
+};
+
+mg.testRunner.add(TestCase1);
+mg.testRunner.add(TestCase2);
+
+mg.testRunner.onTestEnd = function(e) {
+};
+</script>
+</head>
+<body>
+</body>
+</html>
