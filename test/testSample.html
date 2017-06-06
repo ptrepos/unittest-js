@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link type="text/css" href="../plugin/magica/unittest.css" rel="stylesheet"/>
+<script type="text/javascript" src="../plugin/magica/unittest.js"></script>
+<script type="text/javascript">
+var TestCase1 = {
+	name: "Test Sample",
+	testSample1: function() {
+		assertEquals("aaaa", "aaaa");
+	},
+	testSample2: function() {
+		assertEquals("aaaa", "aaaa");
+	},
+	testSample3: function() {
+		assertEquals("aaaa", "aaaa");
+	},
+	testSample4: function() {
+		assertNotEquals("aaaa", "aaaa");
+	},
+	testSample5: function() {
+		assertNotEquals("aaaa", "bbbb");
+	}
+};
+
+mg.testRunner.add(TestCase1);
+
+</script>
+</head>
+<body>
+</body>
+</html>
