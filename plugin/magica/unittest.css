@@ -114,10 +114,10 @@
 .mgTestRunner {
 	font-family: Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
 	position: fixed;
-	left: 32px;
-	top: 32px;
-	right: 32px;
-	bottom: 32px;
+	left: 24px;
+	top: 24px;
+	right: 24px;
+	bottom: 24px;
 	color: #ffffff;
 	background-color: #080816;
 	opacity: 0.9;
@@ -143,7 +143,7 @@
 	font-size: 90%;
 	color: #080816;
 	background-color: #ffffff;
-	margin: 8px 16px 8px 16px;
+	margin: 0px 8px 0px 8px;
 	padding: 8px 8px 8px 8px;
 	font-style: italic;
 	white-space: nowrap;
@@ -158,9 +158,9 @@
 
 .mgTestRunner .mgResultContext {
 	position: absolute;
-	top: 138px;
-	left: 16px;
-	right: 16px;
+	top: 130px;
+	left: 8px;
+	right: 8px;
 	bottom: calc(20% + 4px);
 	overflow: scroll;
 
@@ -173,9 +173,9 @@
 .mgTestRunner .mgConsole {
 	position: absolute;
 	top: calc(80% + 4px);
-	left: 16px;
-	right: 16px;
-	bottom: 16px;
+	left: 8px;
+	right: 8px;
+	bottom: 8px;
 	overflow: scroll;
 	
 	border: solid 1px #f0f0f0;
