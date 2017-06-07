@@ -247,16 +247,16 @@ if(this.mg == undefined) {
 		this.onTestEnd = null;
 	};
 	
-	var TestRunner_call = function(thisObj, result, testCase, name, test)
+	var TestRunner_call = function(thisObj, testCaseResult, testCase, name, test)
 	{
 		try {
 			test.call(testCase);
 			
-			result.tests.push({name: name, result: "OK"});
+			testCaseResult.tests.push({name: name, result: "OK"});
 			TestRunner_reportStatus(thisObj);
 			TestRunner_ok(thisObj, name);
 		} catch(ex) {
-			result.tests.push({name: name, result: "ERROR", message: ex.message, stack: ex.stack});
+			testCaseResult.tests.push({name: name, result: "ERROR", message: ex.message, stack: ex.stack});
 			TestRunner_reportStatus(thisObj);
 			TestRunner_error(thisObj, name, ex);
 		}
@@ -266,9 +266,15 @@ if(this.mg == undefined) {
 	{
 		thisObj._result.pass++;
 		
+		// <tr>
+		//   <td class="button"><span class="mgAnchorButtonDisable">▼</span></td>
+		//   <td class="status"><span class="mgOK">OK</span></td>
+		//   <td class="name">${name}</td>
+		//   <td class="message"></td>
+		// </tr>
 		var row = _tr(null, [
 			_td("button", [_span("mgAnchorButtonDisable", "▼")]),
-			_td("status", [_span("mgOK", "OK")]),
+			_td("status", [_span("mgOK", "[OK]")]),
 			_td("name", [name]),
 			_td("message", null)
 		]);
@@ -276,12 +282,14 @@ if(this.mg == undefined) {
 		
 		TestRunner_reportStatus(thisObj);
 	};
-
+	
 	var TestRunner_error = function(thisObj, name, ex)
 	{
 		thisObj._result.error++;
-		
+				
 		var id = "stacktrace" + stacktraceId++;
+
+		// <a href="javascript:void(0)">▼</a>
 		var anchorButton = _a({"class": "mgAnchorButton", href: "javascript:void(0)"}, "▼");
 		anchorButton.addEventListener("click", function() {
 			var e = document.getElementById(id);
@@ -292,9 +300,18 @@ if(this.mg == undefined) {
 			}
 		});
 		
+		// <tr>
+		//   <td class="button"><a href="javascript:void(0)">▼</a></td>
+		//   <td class="status"><span class="mgNG">NG</span></td>
+		//   <td class="name">${name}</td>
+		//   <td class="message">${ex.message}</td>
+		// </tr>
+		// <tr id="${stacktraceId}" style="display: none;">
+		//   <td class="stacktrace" colspan="4"><pre>${ex.stack}</pre></td>
+		// </tr>
 		var row = _tr(null, [
 			_td("button", [anchorButton]),
-			_td("status", [_span("mgNG", "NG")]),
+			_td("status", [_span("mgNG", "[NG]")]),
 			_td("name", [name]),
 			_td("message", [ex.message])
 		]);
@@ -424,6 +441,10 @@ if(this.mg == undefined) {
 			var testCase = thisObj._testCases[index];
 			var testCaseName = getOrDefault(testCase.name, "UNDEFINED");
 
+			// <div class="testCase">
+			//    <h2 class="caption">${testsCaseName}</h2>
+			//    <table></table>
+			// </div>
 			var testCaseTable = _table(null, []);
 			var testCaseBlock = _div("testCase", [
 				_h2("caption", testCaseName), 
@@ -604,7 +625,7 @@ if(this.mg == undefined) {
 			var id = "__mg_id_" + result.testCase;
 			var status;
 			if(result.result.error > 0) {
-				status = _span("mgError", "[ERROR]");
+				status = _span("mgError", "[NG]");
 			} else {
 				status = _span("mgOK", "[OK]");
 			}
