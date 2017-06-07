@@ -4,7 +4,7 @@
  * table grid plugin.
  */
 .mgTestLuncher {
-	font-family: Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+	font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
 
 	color: #ffffff;
 	background-color: #080816;
@@ -112,7 +112,7 @@
 }
 
 .mgTestRunner {
-	font-family: Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+	font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
 	position: fixed;
 	left: 24px;
 	top: 24px;
@@ -145,15 +145,30 @@
 	background-color: #ffffff;
 	margin: 0px 8px 0px 8px;
 	padding: 8px 8px 8px 8px;
-	font-style: italic;
 	white-space: nowrap;
 	overflow: none;
 }
-.mgTestRunner .mgStatusContext .mgError {
+
+.mgNG {
 	color: #ff0000;
 }
-.mgTestRunner .mgStatusContext .mgOK {
+
+.mgOK {
 	color: #0000ff;
+}
+.mgError {
+	color: #ff0000;
+}
+
+.mgSuccess {
+	color: #0000ff;
+}
+
+.mgAnchorButtonDisable {
+	color: #A0A0A0;
+}
+.mgAnchorButton {
+	color: #202020;
 }
 
 .mgTestRunner .mgResultContext {
@@ -164,10 +179,39 @@
 	bottom: calc(20% + 4px);
 	overflow: scroll;
 
-	//margin: 8px 16px 8px 16px;
 	padding: 8px 8px 8px 8px;
 	color: #080816;
 	background-color: #ffffff;
+}
+.mgTestRunner .mgResultContext .testCase 
+{
+	border-bottom: 1px solid #080816;
+}
+
+.mgTestRunner .caption {
+	font-size: 125%;
+	margin: 8px;
+}
+.mgTestRunner table {
+	margin: 8px;
+	font-size: 90%;
+}
+.mgTestRunner .button {
+	width: 24px;
+	text-align: center;
+}
+.mgTestRunner .status {
+	width: 30px;
+}
+.mgTestRunner .name {
+	width: 200px;
+}
+.mgTestRunner .message {
+	width: 480px;
+}
+.mgTestRunner .stacktrace pre {
+	margin: 0px 0px 0px 36px;
+	font-size: 90%;
 }
 
 .mgTestRunner .mgConsole {
@@ -186,49 +230,6 @@
 
 	color: #f0f0f0;
 	font-family: Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
-}
-
-.mgTestRunner .mgResultContext .mgTestCaseContext {
-	margin: 0px 0px 8px 0px;
-	border-bottom: solid 1px #080816;
-}
-
-.mgTestRunner .mgResultContext .mgTestCaseContext .mgCaption {
-	font-weight: bold;
-	//font-style: italic;
-}
-
-.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock {
-	margin: 0px 0px 4px 24px;
-	font-size: 90%;
-}
-
-.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock .mgHead {
-	font-weight: bold;
-}
-
-.mgTestRunner .mgResultContext .mgTestCaseContext .mgError .mgHead .mgType {
-	color: #ff0000;
-	font-weight: bold;
-}
-
-.mgTestRunner .mgResultContext .mgTestCaseContext .mgOK .mgHead .mgType {
-	color: #0000ff;
-	font-weight: bold;
-}
-
-.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock .mgHead .mgMessage {
-}
-
-.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock .mgHead .mgMessage {
-}
-.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock .mgStack {
-	margin: 0px 0px 0px 24px;
-}
-
-.mgTestRunner .mgResultContext .mgTestCaseContext .mgBlock .mgStack pre {
-	margin: 0px;
-	padding: 0px;
 }
 
 .mgTestRunner .mgConsole .mgInfo {

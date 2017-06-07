@@ -109,6 +109,18 @@ if(this.mg == undefined) {
 	var _h2 = function(attrs, bodies) {
 		return _element("h2", attrs, bodies);
 	};
+	var _h3 = function(attrs, bodies) {
+		return _element("h3", attrs, bodies);
+	};
+	var _table = function(attrs, bodies) {
+		return _element("table", attrs, bodies);
+	};
+	var _tr = function(attrs, bodies) {
+		return _element("tr", attrs, bodies);
+	};
+	var _td = function(attrs, bodies) {
+		return _element("td", attrs, bodies);
+	};
 	
 	var _equals = function(a, b) 
 	{
@@ -228,9 +240,8 @@ if(this.mg == undefined) {
 	{
 		this._testCases = [];
 		this._result = {pass: 0, error: 0, assert: 0, userAgent: window.navigator.userAgent, testCases: []};
-		this._resultContext = null;
+		this._resultBlock = null;
 		this._statusContext = null;
-		this._testCaseContext = null;
 		this._block = null;
 		this._showButton = null;
 		this.onTestEnd = null;
@@ -255,13 +266,14 @@ if(this.mg == undefined) {
 	{
 		thisObj._result.pass++;
 		
-		var block = _dl("mgBlock mgOK", [
-			_dt("mgHead", [
-				_span("mgType", "[OK]"), "\t",
-				_span("mgName", name), " ",
-			])
+		var row = _tr(null, [
+			_td("button", [_span("mgAnchorButtonDisable", "▼")]),
+			_td("status", [_span("mgOK", "OK")]),
+			_td("name", [name]),
+			_td("message", null)
 		]);
-		thisObj._testCaseContext.appendChild(block);
+		thisObj._testCaseTable.appendChild(row);
+		
 		TestRunner_reportStatus(thisObj);
 	};
 
@@ -269,17 +281,33 @@ if(this.mg == undefined) {
 	{
 		thisObj._result.error++;
 		
-		var block = _dl("mgBlock mgError", [
-			_dt("mgHead", [
-				_span("mgType", "[ERROR]"), "\t",
-				_span("mgName", name), " :\t",
-				_span("mgMessage", ex.message),
-			]),
-			_dd("mgStack", _pre(null, ex.stack)),
+		var id = "stacktrace" + stacktraceId++;
+		var anchorButton = _a({"class": "mgAnchorButton", href: "javascript:void(0)"}, "▼");
+		anchorButton.addEventListener("click", function() {
+			var e = document.getElementById(id);
+			if(e.style.display == "none") {
+				e.style.display = "table-row";
+			} else {
+				e.style.display = "none";
+			}
+		});
+		
+		var row = _tr(null, [
+			_td("button", [anchorButton]),
+			_td("status", [_span("mgNG", "NG")]),
+			_td("name", [name]),
+			_td("message", [ex.message])
 		]);
-		thisObj._testCaseContext.appendChild(block);
+		thisObj._testCaseTable.appendChild(row);
+		
+		var row = _tr({"id": id, style: "display: none;"}, [
+			_td({colspan: "4", "class": "stacktrace"}, [_pre(null, [ex.stack])]),
+		]);
+		thisObj._testCaseTable.appendChild(row);
+		
 		TestRunner_reportStatus(thisObj);
 	};
+	var stacktraceId = 0;
 	
 	var TestRunner_reportStatus = function(thisObj)
 	{
@@ -289,7 +317,7 @@ if(this.mg == undefined) {
 			status = _span("mgError", "FAULURE");
 			error = _span("mgError", "ERROR: " + thisObj._result.error);
 		} else {
-			status = _span("mgOK", "SUCCESS");
+			status = _span("mgSuccess", "SUCCESS");
 			error = _span("mgPass", "ERROR: " + thisObj._result.error);
 		}
 		
@@ -329,7 +357,7 @@ if(this.mg == undefined) {
 
 	mg.TestRunner.prototype.init = function()
 	{
-		this._resultContext = _div("mgResultContext");
+		this._resultBlock = _div("mgResultContext");
 		this._statusContext = _div("mgStatusContext");
 		this._console = _pre("mgConsole");
 		
@@ -337,7 +365,7 @@ if(this.mg == undefined) {
 			_div("mgTitle", TEST_RUNNER_TITLE),
 			this._statusContext,
 			this._console,
-			this._resultContext
+			this._resultBlock
 		]);
 		this._block = block;
 
@@ -393,47 +421,51 @@ if(this.mg == undefined) {
 				TestRunner_processOnTestEnd(thisObj);
 				return;
 			}
-
 			var testCase = thisObj._testCases[index];
 			var testCaseName = getOrDefault(testCase.name, "UNDEFINED");
 
-			thisObj._testCaseContext = _div("mgTestCaseContext", 
-				_div("mgCaption", testCaseName));
-			thisObj._resultContext.appendChild(thisObj._testCaseContext);
-
+			var testCaseTable = _table(null, []);
+			var testCaseBlock = _div("testCase", [
+				_h2("caption", testCaseName), 
+				testCaseTable]);
+			thisObj._testCaseTable = testCaseTable;
+			thisObj._resultBlock.appendChild(testCaseBlock);
+			
 			var setUp = getOrDefault(testCase.setUp, null);
 			var tearDown = getOrDefault(testCase.tearDown, null);
-			var cases = [];
+			var testFuncs = [];
 			for(var i in testCase) {
 				if(i.indexOf("test") == 0) {
-					cases.push({name: i, test: testCase[i]});
+					testFuncs.push({name: i, test: testCase[i]});
 				}
 			}
 			
-			var result = new Object();
-			result.name = testCaseName;
-			result.tests = [];
+			var testCaseResult = new Object();
+			testCaseResult.name = testCaseName;
+			testCaseResult.tests = [];
 			
 			try {
 				if(setUp != null) {
-					TestRunner_call(thisObj, result, testCase, "setUp", setUp);
+					TestRunner_call(thisObj, testCaseResult, testCase, "setUp", setUp);
 				}
 			
-				for(var i = 0; i < cases.length; i++) {
-					var name = cases[i].name;
-					var test = cases[i].test;
+				for(var i = 0; i < testFuncs.length; i++) {
+					var name = testFuncs[i].name;
+					var test = testFuncs[i].test;
 					
-					TestRunner_call(thisObj, result, testCase, name, test);
+					TestRunner_call(thisObj, testCaseResult, testCase, name, test);
 				}
 			
 				if(tearDown != null) {
-					TestRunner_call(thisObj, result, testCase, "tearDown", tearDown);
+					TestRunner_call(thisObj, testCaseResult, testCase, "tearDown", tearDown);
 				}
 			} catch(ex) {
 				console.error(ex);
 				TestRunner_error(thisObj, testCaseName, ex);
 			}
-			thisObj._result.testCases.push(result);
+			thisObj._result.testCases.push(testCaseResult);
+			
+			thisObj._testCaseTable = null;
 
 			index++;
 			setTimeout(loop, 0);
